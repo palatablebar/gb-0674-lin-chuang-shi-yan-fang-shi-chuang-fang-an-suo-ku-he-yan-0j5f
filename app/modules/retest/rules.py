@@ -24,5 +24,6 @@ def adjudicate(rows,context):
     return selected,issues
 
 def apply(state):
-    selected,issues=adjudicate(state['records'],state['context']);state.update(selected_results=selected,retest_issues=issues)
+    rows=list(state['records'])+list(state.get('merged_visits',[]))
+    selected,issues=adjudicate(rows,state['context']);state.update(selected_results=selected,retest_issues=issues)
     state['views']['retest']={'title':'复检裁决','rows':selected+issues,'metrics':{'有效结果':len(selected),'采用复检':sum(r['code']=='RETEST_SELECTED' for r in selected),'复检问题':len(issues)}}

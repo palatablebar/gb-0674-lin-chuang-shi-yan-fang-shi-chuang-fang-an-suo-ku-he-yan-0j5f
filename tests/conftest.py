@@ -7,3 +7,6 @@ def sample():
 @pytest.fixture
 def clean():
     return evaluate({'dataset':'clean'})
+@pytest.fixture
+def segment():
+    return evaluate({'dataset':'segment'})

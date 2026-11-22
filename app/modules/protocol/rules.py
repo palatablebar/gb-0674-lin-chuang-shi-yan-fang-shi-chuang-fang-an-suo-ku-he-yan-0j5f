@@ -15,7 +15,7 @@ def normalize(row,context):
     if row['subject'] not in context['subjects']:raise BusinessError('UNKNOWN_SUBJECT','受试者未入组')
     if enrolled!=instant(context['subjects'][row['subject']]):raise BusinessError('ENROLLMENT_CONFLICT','入组基准不一致')
     if at<enrolled or revision<1 or revision%1:raise BusinessError('INVALID_RANGE','访视日期或版本越界')
-    if row['kind'] not in {'PRIMARY','RETEST'}:raise BusinessError('BAD_KIND','记录类型无效')
+    if row['kind'] not in {'PRIMARY','RETEST','SEGMENT'}:raise BusinessError('BAD_KIND','记录类型无效')
     chosen=choose_protocol(row['subject'],at,context)
     if row['protocol'] not in {'auto',chosen}:raise BusinessError('PROTOCOL_MISMATCH','记录方案与受试者有效版不符')
     if row['visit'] not in context['plans'][chosen]:raise BusinessError('UNKNOWN_VISIT','访视编号不存在')

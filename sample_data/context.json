@@ -2,6 +2,7 @@
   "keys": [
     "intake",
     "protocol",
+    "segment",
     "windows",
     "deviation",
     "retest",
